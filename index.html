@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mia Ma</title>
+<meta name="description" content="Mia Ma turns invisible structures into spaces people can move through. Fonts, beliefs, a personality system, friendships and a cat café.">
+<meta property="og:title" content="Mia Ma">
+<meta property="og:description" content="I turn invisible structures into spaces people can move through.">
+<meta property="og:image" content="img/zx-walk.jpg">
+<meta name="theme-color" content="#f1f0ec">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- The table. Everything inside #world is laid out by main.js from projects.js. -->
+<div id="stage" aria-hidden="true"><div id="drift"><div id="world">
+  <div class="intro" id="intro"></div>
+  <div class="outro" id="outro"></div>
+  <article class="card" id="card"></article>
+</div></div></div>
+
+<div id="scroller" tabindex="0" aria-label="Scroll to move through the work"></div>
+<nav class="rail" id="rail" aria-label="Projects"></nav>
+<div class="top"><span class="mono" id="topline">Mia Ma · Portfolio</span></div>
+<div class="hint" id="hint" aria-hidden="true"><span class="mono">Scroll</span><i></i></div>
+
+<!-- The same content as plain text, for screen readers and search engines. -->
+<main class="sr-only" id="text"></main>
+<noscript><div class="noscript"><h1>Mia Ma</h1><p>This portfolio is a table of work you move across by scrolling. It needs JavaScript to run.</p></div></noscript>
+
+<script src="projects.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
