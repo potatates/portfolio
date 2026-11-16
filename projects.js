@@ -29,11 +29,7 @@ window.PROJECTS = [
     credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
     link: 'https://zixiangfont.com',
     images: [
-      ['zx-site', 'The Zixiang home page: typing a phrase and switching font families', 'video'],
-      ['zx-compare', 'The Zixiang compare page: three fonts side by side, resizing and swapping the sample text', 'video'],
-      ['zx-walk', 'The floor map prototype: a dot for every font, and the character 永 drawn in the font you stand on'],
-      ['zx-glyphs', 'The character 永 in every font in the collection'],
-      ['zx-map', 'The similarity map, with fonts colored by family']
+      ['zx-tour', 'A walk through Zixiang: home, a font and its similar fonts, the style and guide pages, then compare', 'video']
     ]
   },
   {
