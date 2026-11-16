@@ -10,7 +10,7 @@ window.SITE = {
   sub: 'Fonts, beliefs, a personality system, friendships and a cat café, each made into something you can walk through, touch or play.',
   thanks: 'Thanks for looking.',
   contact: [
-    ['(your email)', null],
+    ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
     ['GitHub', 'https://github.com/potatates'],
     ['Résumé', null]
   ]
@@ -28,10 +28,10 @@ window.PROJECTS = [
     credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
     link: 'https://zixiangfont.com',
     images: [
+      ['zx-site', 'Typing a line on the Zixiang home page and seeing it in every font, then filtering by style', 'video'],
+      ['zx-compare', 'The compare page: three fonts side by side, resized, with a new sentence and inverted colors', 'video'],
       ['zx-walk', 'The floor map prototype: a dot for every font, and the character 永 drawn in the font you stand on'],
-      ['zx-compare', 'The Zixiang compare page, with fonts side by side'],
       ['zx-glyphs', 'The character 永 in every font in the collection'],
-      ['zx-site', 'The Zixiang home page, browsing all fonts'],
       ['zx-map', 'The similarity map, with fonts colored by family']
     ]
   },
@@ -46,9 +46,9 @@ window.PROJECTS = [
     credits: [['Role', 'Concept, design, code, sound'], ['Tools', 'Three.js, Tone.js']],
     link: 'https://potatates.github.io/structural-trap/',
     images: [
-      ['st-structure', 'A glowing structure of caught lights in a dark forest over water'],
-      ['st-reveal', 'The ending, where the structure you built is replayed'],
-      ['st-crack', 'A cracked light being pulled out of the structure'],
+      ['st-structure', 'Catching lights and stacking them into a glowing structure while mushrooms wake in the forest', 'video'],
+      ['st-crack', 'Pulling out a cracked light: everything resting on it trembles, then falls', 'video'],
+      ['st-reveal', 'The ending, where the structure you built is replayed and the lines appear', 'video'],
       ['st-web', 'The first version: a web of lights with color rules'],
       ['st-mush', 'Mushrooms waking up as the structure grows']
     ]
@@ -64,11 +64,11 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-home', 'The home page with the enneagram symbol'],
-      ['en-dark', 'Beings of Light: reading the preface by a circle of light'],
-      ['en-card', 'A saved result card for Type 4'],
-      ['en-type', 'A type page with growth and stress lines on the symbol'],
-      ['en-result', 'The result page after the check']
+      ['en-flow', 'From the home page into the quick test, choosing one paragraph per screen', 'video'],
+      ['en-dark', 'Beings of Light: turning off the light and reading the preface by a circle of light', 'video'],
+      ['en-result', 'Rating the last statements, then the result page', 'video'],
+      ['en-type', 'A type page: following the growth line from Type 4 to Type 1 and back', 'video'],
+      ['en-card', 'A saved result card for Type 4']
     ]
   },
   {

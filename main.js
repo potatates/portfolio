@@ -32,15 +32,19 @@ $('text').innerHTML=`<h1>${esc(S.name)}</h1><p>${S.line.replace(/<[^>]+>/g,'')}<
 const prints=[],labels=[];
 P.forEach((p,pi)=>{
   const [cx,cy]=SPOTS[pi%SPOTS.length];p._spot=[cx,cy];
-  p.images.forEach(([k,alt],i)=>{
+  p.images.forEach(([k,alt,kind],i)=>{
     const [dx,dy,w,r]=SCATTER[i%SCATTER.length];
     const el=document.createElement('button');el.className='print';el.tabIndex=-1;
-    el.innerHTML=`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
+    /* a print is a still, or a short muted loop (img/NAME.mp4 with img/NAME.jpg as its poster) */
+    const isVideo=kind==='video';
+    el.innerHTML=isVideo?`<video src="img/${k}.mp4" poster="img/${k}.jpg" muted loop playsinline preload="auto" aria-label="${esc(alt)}"></video>`
+      :`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
     const o={el,p,home:null,ar:1.6,w};
-    const img=el.querySelector('img');
+    const img=el.querySelector('img,video');
+    if(isVideo){img.muted=true;o.video=img}
     const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-ww*.32,w:ww,r}};
     setHome();
-    img.addEventListener('load',()=>{o.ar=img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
+    img.addEventListener(isVideo?'loadedmetadata':'load',()=>{o.ar=isVideo?img.videoWidth/img.videoHeight:img.naturalWidth/img.naturalHeight;syncVideos();setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
     el.addEventListener('click',()=>goStep(pi+1));
     world.appendChild(el);prints.push(o);
   });
@@ -54,6 +58,12 @@ function placeLabel(pi){const [,cy]=P[pi]._spot;const mine=prints.filter(o=>o.p=
 P.forEach((p,pi)=>placeLabel(pi));
 STEPS.forEach((t,i)=>{const s=document.createElement('div');s.className='step';scroller.appendChild(s);
   const b=document.createElement('button');b.innerHTML=`<span>${esc(t)}</span><i></i>`;b.setAttribute('aria-label',t);b.onclick=()=>goStep(i);rail.appendChild(b)});
+
+/* loops play while you can see them: the open project's, or all of them on the table; never with reduced motion */
+function syncVideos(){prints.forEach(o=>{if(!o.video)return;
+  const want=!reduce&&!document.hidden&&(!active||o.p===active);
+  if(want){if(o.video.paused)o.video.play().catch(()=>{})}else if(!o.video.paused)o.video.pause()})}
+document.addEventListener('visibilitychange',syncVideos);
 
 function place(o,x,y,w,r,delay=0){const s=o.el.style;s.transitionDelay=delay+'ms';s.left=x+'px';s.top=y+'px';s.width=w+'px';s.transform=`rotate(${r}deg)`}
 
@@ -118,6 +128,7 @@ function render(i){
   if(i===0){closeProject();restore();outro.classList.remove('on');look(IX,IY,zIntro());topline.textContent=S.name+' · Portfolio'}
   else if(i<=P.length){outro.classList.remove('on');openProject(P[i-1]);topline.textContent=P[i-1].side}
   else{closeProject();restore();intro.classList.add('gone');outro.classList.add('on');look(IX,IY+80,zAll());topline.textContent=S.name+' · Portfolio'}
+  syncVideos();
 }
 function goStep(i){i=Math.max(0,Math.min(STEPS.length-1,i));scroller.scrollTo({top:i*scroller.clientHeight,behavior:reduce?'auto':'smooth'})}
 let raf=0;
