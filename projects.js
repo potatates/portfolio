@@ -10,9 +10,10 @@ window.SITE = {
   sub: 'Fonts, beliefs, a personality system, friendships and a cat café, each made into something you can walk through, touch or play.',
   thanks: 'Thanks for looking.',
   contact: [
-    ['(your email)', null],
-    ['GitHub', 'https://github.com/potatates'],
-    ['Résumé', null]
+    ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
+    ['Résumé', 'resume.html'],
+    ['LinkedIn', 'https://www.linkedin.com/in/miayma/'],
+    ['GitHub', 'https://github.com/potatates']
   ]
 };
 

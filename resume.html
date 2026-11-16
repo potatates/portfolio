@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mia Ma · Résumé</title>
+<meta name="description" content="Mia Ma: product design, growth creative and web projects.">
+<meta name="theme-color" content="#f1f0ec">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* A single print laid on the same table as the portfolio: one column, quiet, easy to scan. */
+:root{
+  --paper:#f1f0ec; --print:#fbfbf9; --ink:#1c1b19; --soft:#6f6c64; --hair:#d9d7d0;
+  --serif:"Instrument Serif",Georgia,serif; --sans:"Geist",system-ui,-apple-system,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased;
+  padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair)}
+a:hover{border-color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.mono{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--soft)}
+.top{max-width:760px;margin:0 auto 18px;display:flex;justify-content:space-between;gap:12px}
+.top a{border:0}
+.sheet{max-width:760px;margin:0 auto;background:var(--print);padding:clamp(22px,5vw,52px);transform:rotate(-.25deg);
+  box-shadow:0 1px 2px rgba(0,0,0,.06),0 18px 40px rgba(0,0,0,.09)}
+header h1{font:400 clamp(44px,8vw,64px)/1 var(--serif);margin:0 0 10px}
+header .what{font:italic 400 21px/1.3 var(--serif);margin:0 0 16px;text-wrap:balance}
+.contact{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px}
+section{border-top:1px solid var(--hair);margin-top:30px;padding-top:16px}
+section>h2{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:0 0 14px}
+.item{display:grid;grid-template-columns:1fr auto;gap:2px 16px;margin-bottom:20px}
+.item:last-child{margin-bottom:0}
+.item h3{font:400 24px/1.15 var(--serif);margin:0;min-width:0}
+.item .when{font:400 12px/2 var(--mono);color:var(--soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.item .role{grid-column:1/-1;color:var(--soft);font-size:14px}
+.item ul{grid-column:1/-1;margin:6px 0 0;padding-left:18px}
+.item li{margin:3px 0}
+.item li::marker{color:var(--soft)}
+.skills p{margin:0 0 6px}
+.skills b{font-weight:500}
+@media (max-width:520px){.item{grid-template-columns:1fr}.item .when{line-height:1.4}}
+</style>
+</head>
+<body>
+<nav class="top"><a class="mono" href="index.html">← Portfolio</a><span class="mono">Résumé · Nov 2026</span></nav>
+<article class="sheet">
+  <header>
+    <h1>Mia Ma</h1>
+    <p class="what">Product design and growth creative. In San Francisco, December 2026 to August 2027.</p>
+    <div class="contact">
+      <a href="mailto:25miama@gmail.com">25miama@gmail.com</a>
+      <a href="https://www.linkedin.com/in/miayma/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/potatates" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="item">
+      <h3>COL Group</h3><span class="when">Sep 2026 – now</span>
+      <div class="role">Growth Creative &amp; Product Design Intern · Beijing</div>
+      <ul>
+        <li>Lead and only designer of the official company website rebuild. My mockup set the direction; I built the prototype in Astro.</li>
+        <li>PM and sole designer for 4 new mobile web apps (2 web-novel, 2 micro-drama), designing layout variants to test.</li>
+        <li>Improved mobile web user flows: found friction points, mocked up fixes and shipped them with engineering.</li>
+        <li>Built a Claude skill that drafts 200–300 video ads a week for Meta, TikTok and AppLovin; I fix, rank and retune it from results.</li>
+        <li>Wrote the script team's guide to English-audience tastes and red lines; edit scripts to sound native; led a re-edit test.</li>
+        <li>Managed $88K of ad spend. On Meta, made 2 of the 3 best ads by day-0 ROAS at 13% lower cost per payer than other editors.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>Morgan Stanley</h3><span class="when">May – Jul 2026</span>
+      <div class="role">Wealth Management Intern · Beverly Hills</div>
+      <ul>
+        <li>Built product materials, asset-allocation research and data visuals for advisor client presentations.</li>
+        <li>Liaised with Blackstone, KKR and Franklin Templeton; supported client prep for the SpaceX IPO share purchase.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>WashU UI/UX Club</h3><span class="when">Jan – May 2026</span>
+      <div class="role">Project member</div>
+      <ul>
+        <li>Redesigned the UX flow and panel layouts for the mental health app Euno.</li>
+        <li>Surveyed 60+ users across age groups to inform type, color and design proposals in Figma.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="item">
+      <h3><a href="https://zixiangfont.com" target="_blank" rel="noopener">字相 Zixiang</a></h3><span class="when">2026</span>
+      <div class="role">Research, design, code</div>
+      <ul><li>Scored 282 free Chinese fonts on 12 style axes and mapped them by difference; live site with similarity search and compare.</li></ul>
+    </div>
+    <div class="item">
+      <h3><a href="https://potatates.github.io/structural-trap/" target="_blank" rel="noopener">The Structural Trap</a></h3><span class="when">2026</span>
+      <div class="role">Concept, design, code, sound</div>
+      <ul><li>A game from my research essay. After playtests I cut a confusing first version down to one idea, collapse, with built-in run logging.</li></ul>
+    </div>
+    <div class="item">
+      <h3><a href="https://potatates.github.io/enneagram/" target="_blank" rel="noopener">The Wisdom of the Enneagram</a></h3><span class="when">2026</span>
+      <div class="role">Design in Figma, then code</div>
+      <ul><li>Type-finder site with one decision per screen and honest results when two tests disagree; built two rating flows and kept the calmer one.</li></ul>
+    </div>
+    <div class="item">
+      <h3>Jungus redesign</h3><span class="when"></span>
+      <div class="role">Unofficial UX redesign of jungus.cn</div>
+      <ul><li>Reworked flow and IA: one primary call to action, navigation labeled by user goals, a test chooser with time and outcome.</li></ul>
+    </div>
+    <div class="item">
+      <h3>The Coffee Cats</h3><span class="when">Oct 2025</span>
+      <div class="role">WashU Hackathon · winner</div>
+      <ul><li>Won $750 among hundreds of participants as solo pitcher for a calming idle game I designed end to end in Figma.</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education &amp; research</h2>
+    <div class="item">
+      <h3>Washington University in St. Louis</h3><span class="when">BA, May 2030</span>
+      <div class="role">Intended major Marketing, minor HCI · GPA 3.72, Dean's List</div>
+    </div>
+    <div class="item">
+      <h3>"The Structural Trap: Why False Beliefs Resist Revision"</h3><span class="when">2025 – 26</span>
+      <div class="role">Undergraduate Research Symposium · 1 of 3 selected from ~1,000 college-writing students</div>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>Skills</h2>
+    <p><b>Design</b> · Figma, user flows, prototyping, Illustrator, Premiere Pro</p>
+    <p><b>Build</b> · HTML/CSS, JavaScript, Astro, Three.js, Java, Claude Code</p>
+    <p><b>Languages</b> · English and Chinese (native), Spanish (intermediate), Japanese (beginner)</p>
+  </section>
+</article>
+</body>
+</html>

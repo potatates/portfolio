@@ -19,7 +19,7 @@ const STEPS=['Intro',...P.map(p=>p.title),'The whole table'];
 
 /* text */
 intro.innerHTML=`<div class="name">${esc(S.name)}</div><h1>${S.line}</h1><p>${esc(S.sub)}</p>`;
-const contact=S.contact.map(([t,u])=>u?`<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`:`<span>${esc(t)}</span>`).join('');
+const contact=S.contact.map(([t,u])=>u?`<a href="${u}"${/^https?:/.test(u)?' target="_blank" rel="noopener"':''}>${esc(t)}</a>`:`<span>${esc(t)}</span>`).join('');
 outro.innerHTML=`<h2>${esc(S.thanks)}</h2><p>${contact}</p>`;
 $('text').innerHTML=`<h1>${esc(S.name)}</h1><p>${S.line.replace(/<[^>]+>/g,'')}</p>`+
   P.map(p=>`<section><h2>${esc(p.title)}</h2><p>${esc(p.kind)}</p><p>${esc(p.idea)}</p>`+
