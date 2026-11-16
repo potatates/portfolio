@@ -28,10 +28,10 @@ window.PROJECTS = [
     credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
     link: 'https://zixiangfont.com',
     images: [
+      ['zx-site', 'The Zixiang home page: typing a phrase and switching font families', 'video'],
+      ['zx-compare', 'The Zixiang compare page: three fonts side by side, resizing and swapping the sample text', 'video'],
       ['zx-walk', 'The floor map prototype: a dot for every font, and the character 永 drawn in the font you stand on'],
-      ['zx-compare', 'The Zixiang compare page, with fonts side by side'],
       ['zx-glyphs', 'The character 永 in every font in the collection'],
-      ['zx-site', 'The Zixiang home page, browsing all fonts'],
       ['zx-map', 'The similarity map, with fonts colored by family']
     ]
   },
@@ -46,9 +46,9 @@ window.PROJECTS = [
     credits: [['Role', 'Concept, design, code, sound'], ['Tools', 'Three.js, Tone.js']],
     link: 'https://potatates.github.io/structural-trap/',
     images: [
-      ['st-structure', 'A glowing structure of caught lights in a dark forest over water'],
-      ['st-reveal', 'The ending, where the structure you built is replayed'],
-      ['st-crack', 'A cracked light being pulled out of the structure'],
+      ['st-structure', 'Catching lights and stacking them into a glowing structure as the forest wakes', 'video'],
+      ['st-crack', 'Pulling out a cracked light: everything resting on it shakes and falls', 'video'],
+      ['st-reveal', 'The ending, where the structure you built is replayed', 'video'],
       ['st-web', 'The first version: a web of lights with color rules'],
       ['st-mush', 'Mushrooms waking up as the structure grows']
     ]
@@ -64,11 +64,11 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-home', 'The home page with the enneagram symbol'],
-      ['en-dark', 'Beings of Light: reading the preface by a circle of light'],
-      ['en-card', 'A saved result card for Type 4'],
-      ['en-type', 'A type page with growth and stress lines on the symbol'],
-      ['en-result', 'The result page after the check']
+      ['en-flow', 'From the home page into the test: one choice per screen', 'video'],
+      ['en-result', 'Rating the last statements, then the result page', 'video'],
+      ['en-type', 'A type page, following its growth line to another type and back', 'video'],
+      ['en-dark', 'Beings of Light: turning the lights off and reading by a circle of light', 'video'],
+      ['en-card', 'A saved result card for Type 4']
     ]
   },
   {
@@ -90,13 +90,13 @@ window.PROJECTS = [
   },
   {
     id: 'cc', side: 'Side B · 2', title: 'The Coffee Cats', kind: 'Game · hackathon',
-    idea: 'A cat café where the care you give is what you earn with. (draft line)',
+    idea: 'An idle game for decompressing: no timers, no way to lose, just cats to care for.',
     beats: [
-      ['The question', '(what the hackathon asked, in your words)'],
+      ['The question', 'What if a game helped you decompress instead of winding you up?'],
       ['The move', 'Adopt cats, care for them, and merge pastries and coffee to serve the café’s customers.'],
-      ['What I’d tighten', '(the choice you want to make more intentional)']
+      ['Why it works', 'Repetition calms. Built with neurodivergent players in mind: needs drop slowly, so you set the pace.']
     ],
-    credits: [['Made at', '(hackathon name)'], ['Team', '(names?)'], ['Tools', 'Figma']],
+    credits: [['Made at', 'WashU Hackathon 2025 · winner'], ['Team', 'The Coffee Cats'], ['Role', 'Pitch, UI/UX design, all game art'], ['Tools', 'Figma']],
     link: null,
     images: [
       ['cc-shop', 'The cat shop, with cats to adopt for coins'],

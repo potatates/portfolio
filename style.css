@@ -83,3 +83,4 @@ a{color:inherit}
 
 @media (max-width:760px){.rail{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
+.print video{display:block;width:100%;height:auto;background:#111;pointer-events:none}

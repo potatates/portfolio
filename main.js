@@ -32,15 +32,19 @@ $('text').innerHTML=`<h1>${esc(S.name)}</h1><p>${S.line.replace(/<[^>]+>/g,'')}<
 const prints=[],labels=[];
 P.forEach((p,pi)=>{
   const [cx,cy]=SPOTS[pi%SPOTS.length];p._spot=[cx,cy];
-  p.images.forEach(([k,alt],i)=>{
+  p.images.forEach(([k,alt,kind],i)=>{
     const [dx,dy,w,r]=SCATTER[i%SCATTER.length];
     const el=document.createElement('button');el.className='print';el.tabIndex=-1;
-    el.innerHTML=`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
+    /* a print is a still (img/k.jpg) or, with 'video', a clip (img/k.mp4) that shows k.jpg until it plays */
+    el.innerHTML=kind==='video'
+      ?`<video src="img/${k}.mp4" poster="img/${k}.jpg" muted playsinline preload="metadata" aria-label="${esc(alt)}"></video>`
+      :`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
     const o={el,p,home:null,ar:1.6,w};
-    const img=el.querySelector('img');
+    const img=el.querySelector('img,video');o.video=kind==='video'?img:null;
     const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-ww*.32,w:ww,r}};
     setHome();
-    img.addEventListener('load',()=>{o.ar=img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
+    img.addEventListener(o.video?'loadedmetadata':'load',()=>{o.ar=o.video?img.videoWidth/img.videoHeight:img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
+    if(o.video)img.addEventListener('ended',()=>{if(active===p&&order[0]===o)advance()});
     el.addEventListener('click',()=>goStep(pi+1));
     world.appendChild(el);prints.push(o);
   });
@@ -100,10 +104,23 @@ function openProject(p){
   card.classList.add('on');
   prints.forEach(o=>o.el.classList.toggle('dim',o.p!==p));
   labels.forEach(l=>l.classList.add('gone'));intro.classList.add('gone');
-  if(!reduce&&order.length>1)cycle=setInterval(()=>{if(document.hidden)return;order.push(order.shift());layout(p,false)},3600);
+  playLead();
+}
+/* the lead print plays if it is a clip; the next print takes over when the clip ends, or after 3.6s for a still */
+function playLead(){
+  clearTimeout(cycle);cycle=null;
+  order.forEach((o,k)=>{if(o.video&&k>0){o.video.pause()}});
+  const lead=order[0];
+  if(lead.video&&!reduce){lead.video.currentTime=0;lead.video.loop=order.length<2;const pr=lead.video.play();if(pr)pr.catch(()=>{cycle=setTimeout(advance,6000)})}
+  else if(!reduce&&order.length>1)cycle=setTimeout(advance,3600);
+}
+function advance(){
+  if(!active)return;if(document.hidden){cycle=setTimeout(advance,1000);return}
+  if(order.length<2)return;order.push(order.shift());layout(active,false);playLead();
 }
 function closeProject(quick){
-  clearInterval(cycle);cycle=null;if(!active)return;const p=active;active=null;
+  clearTimeout(cycle);cycle=null;if(!active)return;const p=active;active=null;
+  prints.forEach(o=>{if(o.video)o.video.pause()});
   prints.filter(o=>o.p===p).forEach((o,k)=>{o.el.classList.remove('lead','gone');place(o,o.home.x,o.home.y,o.home.w,o.home.r,quick?0:k*40)});
   card.classList.remove('on');
 }
