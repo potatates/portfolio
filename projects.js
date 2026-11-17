@@ -57,7 +57,7 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-tour', 'The Wisdom of the Enneagram: the quick test, fifteen statements, the result, then the type pages', 'video']
+      ['en-tour', 'The Wisdom of the Enneagram: the quick test, a few of the check statements, the result, then the type pages', 'video']
     ]
   },
   {
@@ -70,6 +70,7 @@ window.PROJECTS = [
     credits: [['Idea', 'Mia Ma'], ['Team', 'Mia Ma, Palos Liu, Echo Dong'], ['Tools', 'Figma']],
     link: null,
     images: [
+      ['fc-tour', 'Clicking through Friend Clock: the clock in dark, pink, yellow and green themes, light mode as the day passes, then choosing friends', 'video'],
       ['fc-dark', 'The StandBy clock: friends as glowing circles on rings beside the time'],
       ['fc-pink', 'The clock in a pink color theme'],
       ['fc-light', 'The clock in light mode'],
@@ -87,6 +88,7 @@ window.PROJECTS = [
     credits: [['Made at', 'WashU Hackathon 2025 · winner'], ['Team', 'The Coffee Cats'], ['Role', 'Pitch, UI/UX design, all game art'], ['Tools', 'Figma']],
     link: null,
     images: [
+      ['cc-tour', 'Playing The Coffee Cats prototype: picking a cat, giving it yarn, then making and merging pastries to fill a customer order', 'video'],
       ['cc-shop', 'The cat shop, with cats to adopt for coins'],
       ['cc-care', 'Caring for a cat with yarn, toys, water and food'],
       ['cc-merge', 'The merge board, combining pastries for a customer']
