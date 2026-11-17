@@ -6,8 +6,8 @@
 */
 window.SITE = {
   name: 'Mia Ma',
-  line: 'I turn invisible structures into spaces people can <em>move through.</em>',
-  sub: 'Fonts, beliefs, a personality system, friendships and a cat café, each made into something you can walk through, touch or play.',
+  line: 'I design and build <em>websites, apps and small games.</em>',
+  sub: 'Right now I make ads and websites at COL Group. Here are five things I made: a Chinese font finder, a game about letting go of a belief, an Enneagram guide, a clock for friends and a cat café game.',
   thanks: 'Thanks for looking.',
   contact: [
     ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
@@ -65,8 +65,7 @@ window.PROJECTS = [
     idea: 'A clock that tells you where your people are, and how close.',
     beats: [
       ['The question', 'Find My knows where your friends are. What would it take to feel how close they are?'],
-      ['The move', 'Rings show time-zone distance. Each circle’s size shows how often you talked this week.'],
-      ['What I’d change', '(one honest line from you)']
+      ['The move', 'Rings show time-zone distance. Each circle’s size shows how often you talked this week.']
     ],
     credits: [['Idea', 'Mia Ma'], ['Team', 'Mia Ma, Palos Liu, Echo Dong'], ['Tools', 'Figma']],
     link: null,

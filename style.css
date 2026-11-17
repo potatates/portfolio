@@ -31,7 +31,7 @@ a{color:inherit}
 .intro .name{font:500 15px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
 .intro h1{font:400 68px/1.02 var(--serif);margin:20px 0 18px;text-wrap:balance;letter-spacing:-.008em}
 .intro h1 em{font-style:italic}
-.intro p{margin:0 auto;max-width:40ch;color:var(--soft);font-size:19px}
+.intro p{margin:0 auto;max-width:46ch;text-wrap:balance;color:var(--soft);font-size:19px}
 .outro{position:absolute;left:1500px;top:1080px;width:1100px;transform:translate(-50%,-50%);text-align:center;opacity:0;transition:opacity .8s;pointer-events:none}
 .outro.on{opacity:1}
 .outro h2{font:400 120px/1 var(--serif);margin:0 0 26px}
