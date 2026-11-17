@@ -6,8 +6,8 @@
 */
 window.SITE = {
   name: 'Mia Ma',
-  line: 'I turn invisible structures into spaces people can <em>move through.</em>',
-  sub: 'Fonts, beliefs, a personality system, friendships and a cat café, each made into something you can walk through, touch or play.',
+  line: 'I design and build <em>websites, apps and small games.</em>',
+  sub: 'Right now I make ads and websites at COL Group. Here are five things I made: a Chinese font finder, a game about letting go of a belief, an Enneagram guide, a clock for friends and a cat café game.',
   thanks: 'Thanks for looking.',
   contact: [
     ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
@@ -20,13 +20,13 @@ window.SITE = {
 window.PROJECTS = [
   {
     id: 'zx', side: 'Side A · 1', title: '字相 Zixiang', kind: 'Web · data · 2026',
-    idea: 'Typefaces have a feel you can sense but not name. I measured it.',
+    idea: 'A font like this one, but rounder. Now you can search for that.',
     beats: [
-      ['The question', 'Why do two Chinese fonts feel close when nobody can say how?'],
-      ['The move', 'I scored 282 free Chinese fonts on 12 stylistic axes, then laid them out so distance means difference.'],
-      ['What it opened', 'Next, the map goes on a floor. You walk from one style to another, and the character 永 changes under your feet.']
+      ['The question', 'How do we make finding Chinese fonts easier, and what does “similar” even mean for a Chinese font?'],
+      ['The move', 'I measured 12 traits across 300 characters for each of 282 fonts that are free for commercial use, weighting what the eye notices most. Then I checked the scores by hand. “Similar fonts” can be steered: rounder, bolder, more handwritten.'],
+      ['What happened', 'About 1,100 visits and 5,000 page views in the first six weeks. The design podcast Anyway.FM shared it.']
     ],
-    credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
+    credits: [['Role', 'Solo: research, design, build'], ['Tools', 'Claude Code']],
     link: 'https://zixiangfont.com',
     images: [
       ['zx-tour', 'A walk through Zixiang: the guide, the 楷体 list, a font and its similar fonts with a filter, compare, then the style pages', 'video']
@@ -57,7 +57,7 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-tour', 'The Wisdom of the Enneagram: the quick test, fifteen statements, the result, then the type pages', 'video']
+      ['en-tour', 'The Wisdom of the Enneagram: the quick test, a few of the check statements, the result, then the type pages', 'video']
     ]
   },
   {
@@ -65,16 +65,12 @@ window.PROJECTS = [
     idea: 'A clock that tells you where your people are, and how close.',
     beats: [
       ['The question', 'Find My knows where your friends are. What would it take to feel how close they are?'],
-      ['The move', 'Rings show time-zone distance. Each circle’s size shows how often you talked this week.'],
-      ['What I’d change', '(one honest line from you)']
+      ['The move', 'Rings show time-zone distance. Each circle’s size shows how often you talked this week.']
     ],
     credits: [['Idea', 'Mia Ma'], ['Team', 'Mia Ma, Palos Liu, Echo Dong'], ['Tools', 'Figma']],
     link: null,
     images: [
-      ['fc-dark', 'The StandBy clock: friends as glowing circles on rings beside the time'],
-      ['fc-pink', 'The clock in a pink color theme'],
-      ['fc-light', 'The clock in light mode'],
-      ['fc-pick', 'Choosing which friends appear on the clock']
+      ['fc-tour', 'Clicking through Friend Clock: the clock in dark, pink, yellow and green themes, light mode as the day passes, then choosing friends', 'video']
     ]
   },
   {
@@ -88,9 +84,7 @@ window.PROJECTS = [
     credits: [['Made at', 'WashU Hackathon 2025 · winner'], ['Team', 'The Coffee Cats'], ['Role', 'Pitch, UI/UX design, all game art'], ['Tools', 'Figma']],
     link: null,
     images: [
-      ['cc-shop', 'The cat shop, with cats to adopt for coins'],
-      ['cc-care', 'Caring for a cat with yarn, toys, water and food'],
-      ['cc-merge', 'The merge board, combining pastries for a customer']
+      ['cc-tour', 'Playing The Coffee Cats prototype: picking a cat, giving it yarn, then making and merging pastries to fill a customer order', 'video']
     ]
   }
 ];

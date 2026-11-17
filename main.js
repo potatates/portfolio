@@ -13,8 +13,11 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 
 /* where things sit on the table (world units) */
 const WW=3000,WH=2300,IX=1500,IY=1050;
-const SPOTS=[[820,540],[2180,540],[700,1450],[2300,1450],[1500,1800],[1500,300],[300,1000],[2700,1000]];
-const SCATTER=[[-150,-150,330,-3],[190,-110,250,2.5],[-40,170,290,1.5],[240,170,230,-2],[-330,40,200,3]];
+/* the table: Side A along the top, Side B along the bottom, the words in the middle */
+const SPOTS=[[600,470],[1500,220],[2400,470],[950,1660],[2050,1660]];
+const TILT=[-1.5,1,-1,1.5,-1];
+/* each project is one cover print with its other prints tucked behind it like a small pile */
+const COVER=440,PILE=[[0,0,0],[24,-18,3],[-22,-24,-3.5],[30,-34,5],[-30,-40,-5]];
 const STEPS=['Intro',...P.map(p=>p.title),'The whole table'];
 
 /* text */
@@ -33,7 +36,7 @@ const prints=[],labels=[];
 P.forEach((p,pi)=>{
   const [cx,cy]=SPOTS[pi%SPOTS.length];p._spot=[cx,cy];
   p.images.forEach(([k,alt,kind],i)=>{
-    const [dx,dy,w,r]=SCATTER[i%SCATTER.length];
+    const [dx,dy,dr]=PILE[i%PILE.length],w=COVER,r=TILT[pi%TILT.length]+dr;
     const el=document.createElement('button');el.className='print';el.tabIndex=-1;
     /* a print is a still (img/k.jpg) or, with 'video', a clip (img/k.mp4) that shows k.jpg until it plays */
     const clip=kind==='video'||kind==='sound';
@@ -42,20 +45,22 @@ P.forEach((p,pi)=>{
       :`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
     const o={el,p,home:null,ar:1.6,w};
     const img=el.querySelector('img,video');o.video=clip?img:null;o.sound=kind==='sound';
-    const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-ww*.32,w:ww,r}};
+    const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-(ww/o.ar)/2,w:ww,r}};
     setHome();
     img.addEventListener(o.video?'loadedmetadata':'load',()=>{o.ar=o.video?img.videoWidth/img.videoHeight:img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
     if(o.video)img.addEventListener('ended',()=>{if(active===p&&order[0]===o)advance()});
     el.addEventListener('click',()=>goStep(pi+1));
-    world.appendChild(el);prints.push(o);
+    prints.push(o);
   });
+  /* add the pile back to front so the cover sits on top */
+  prints.filter(o=>o.p===p).reverse().forEach(o=>world.appendChild(o.el));
   const lab=document.createElement('button');lab.className='label';lab.tabIndex=-1;lab.style.left=cx+'px';lab.style.top=(cy+340)+'px';
   lab.innerHTML=`<div class="mono">${esc(p.side)}</div><h2>${esc(p.title)}</h2><p>${esc(p.idea)}</p>`;
   lab.addEventListener('click',()=>goStep(pi+1));world.appendChild(lab);labels.push(lab);
 });
-/* each label sits just under the lowest print of its group */
-function placeLabel(pi){const [,cy]=P[pi]._spot;const mine=prints.filter(o=>o.p===P[pi]);
-  labels[pi].style.top=Math.max(cy+250,...mine.map(o=>o.home.y+o.home.w/o.ar+14))+26+'px'}
+/* each label sits just under its cover print */
+function placeLabel(pi){const c=prints.find(o=>o.p===P[pi]);
+  labels[pi].style.top=(c.home.y+c.home.w/c.ar+14+28)+'px'}
 P.forEach((p,pi)=>placeLabel(pi));
 STEPS.forEach((t,i)=>{const s=document.createElement('div');s.className='step';scroller.appendChild(s);
   const b=document.createElement('button');b.innerHTML=`<span>${esc(t)}</span><i></i>`;b.setAttribute('aria-label',t);b.onclick=()=>goStep(i);rail.appendChild(b)});
@@ -67,7 +72,7 @@ const vw=()=>innerWidth,vh=()=>innerHeight;
 function look(x,y,z,instant){const ox=vw()/2-x*z,oy=vh()/2-y*z,t=`translate(${ox}px,${oy}px) scale(${z})`;
   if(instant){world.style.transition='none';world.style.transform=t;world.offsetWidth;world.style.transition=''}else world.style.transform=t}
 const zIntro=()=>Math.max(.5,Math.min(.85,vw()/1500));
-const zAll=()=>Math.min(vw()/3150,vh()/2450);
+const zAll=()=>Math.min(vw()/2700,vh()/2050);
 
 /* a project gathered in place; its prints take turns as the lead */
 let active=null,order=[],cycle=null;
@@ -142,7 +147,7 @@ function render(i){
   hint.style.opacity=i===0?1:0;
   if(i===0){closeProject();restore();outro.classList.remove('on');look(IX,IY,zIntro());topline.textContent=S.name+' · Portfolio'}
   else if(i<=P.length){outro.classList.remove('on');openProject(P[i-1]);topline.textContent=P[i-1].side}
-  else{closeProject();restore();intro.classList.add('gone');outro.classList.add('on');look(IX,IY+80,zAll());topline.textContent=S.name+' · Portfolio'}
+  else{closeProject();restore();intro.classList.add('gone');outro.classList.add('on');look(IX,1000,zAll());topline.textContent=S.name+' · Portfolio'}
 }
 function goStep(i){i=Math.max(0,Math.min(STEPS.length-1,i));scroller.scrollTo({top:i*scroller.clientHeight,behavior:reduce?'auto':'smooth'})}
 let raf=0;
