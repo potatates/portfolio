@@ -36,11 +36,12 @@ P.forEach((p,pi)=>{
     const [dx,dy,w,r]=SCATTER[i%SCATTER.length];
     const el=document.createElement('button');el.className='print';el.tabIndex=-1;
     /* a print is a still (img/k.jpg) or, with 'video', a clip (img/k.mp4) that shows k.jpg until it plays */
-    el.innerHTML=kind==='video'
+    const clip=kind==='video'||kind==='sound';
+    el.innerHTML=clip
       ?`<video src="img/${k}.mp4" poster="img/${k}.jpg" muted playsinline preload="metadata" aria-label="${esc(alt)}"></video>`
       :`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
     const o={el,p,home:null,ar:1.6,w};
-    const img=el.querySelector('img,video');o.video=kind==='video'?img:null;
+    const img=el.querySelector('img,video');o.video=clip?img:null;o.sound=kind==='sound';
     const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-ww*.32,w:ww,r}};
     setHome();
     img.addEventListener(o.video?'loadedmetadata':'load',()=>{o.ar=o.video?img.videoWidth/img.videoHeight:img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
@@ -70,6 +71,12 @@ const zAll=()=>Math.min(vw()/3150,vh()/2450);
 
 /* a project gathered in place; its prints take turns as the lead */
 let active=null,order=[],cycle=null;
+/* clips marked 'sound' start muted (browsers block autoplay with sound); this button turns it on */
+let soundOn=false;
+const soundBtn=document.createElement('button');soundBtn.className='sound mono';soundBtn.hidden=true;
+const setSoundLabel=()=>{soundBtn.textContent=soundOn?'Sound off':'Sound on';soundBtn.setAttribute('aria-pressed',soundOn)};setSoundLabel();
+soundBtn.addEventListener('click',()=>{soundOn=!soundOn;setSoundLabel();const l=order[0];if(l&&l.video&&l.sound){l.video.muted=!soundOn;if(l.video.paused)l.video.play().catch(()=>{})}});
+document.body.appendChild(soundBtn);
 function layout(p,first){
   const [cx,cy]=p._spot,narrow=vw()<760;
   if(narrow){
@@ -109,8 +116,9 @@ function openProject(p){
 /* the lead print plays if it is a clip; the next print takes over when the clip ends, or after 3.6s for a still */
 function playLead(){
   clearTimeout(cycle);cycle=null;
-  order.forEach((o,k)=>{if(o.video&&k>0){o.video.pause()}});
+  order.forEach((o,k)=>{if(o.video&&k>0){o.video.pause();o.video.muted=true}});
   const lead=order[0];
+  soundBtn.hidden=!lead.sound;if(lead.video)lead.video.muted=!(lead.sound&&soundOn);
   if(lead.video&&!reduce){lead.video.currentTime=0;lead.video.loop=order.length<2;const pr=lead.video.play();if(pr)pr.catch(()=>{cycle=setTimeout(advance,6000)})}
   else if(!reduce&&order.length>1)cycle=setTimeout(advance,3600);
 }
@@ -120,7 +128,7 @@ function advance(){
 }
 function closeProject(quick){
   clearTimeout(cycle);cycle=null;if(!active)return;const p=active;active=null;
-  prints.forEach(o=>{if(o.video)o.video.pause()});
+  prints.forEach(o=>{if(o.video){o.video.pause();o.video.muted=true}});soundBtn.hidden=true;
   prints.filter(o=>o.p===p).forEach((o,k)=>{o.el.classList.remove('lead','gone');place(o,o.home.x,o.home.y,o.home.w,o.home.r,quick?0:k*40)});
   card.classList.remove('on');
 }

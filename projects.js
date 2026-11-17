@@ -43,7 +43,7 @@ window.PROJECTS = [
     credits: [['Role', 'Concept, design, code, sound'], ['Tools', 'Three.js, Tone.js']],
     link: 'https://potatates.github.io/structural-trap/',
     images: [
-      ['st-tour', 'The Structural Trap, with sound: catching and stacking lights as the forest wakes, a cracked light pulled out so everything on it falls, then the ending replay', 'video']
+      ['st-tour', 'The Structural Trap, with sound: catching and stacking lights as the forest wakes, a cracked light pulled out so everything on it falls, then the ending replay', 'sound']
     ]
   },
   {
