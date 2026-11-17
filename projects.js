@@ -20,13 +20,13 @@ window.SITE = {
 window.PROJECTS = [
   {
     id: 'zx', side: 'Side A · 1', title: '字相 Zixiang', kind: 'Web · data · 2026',
-    idea: 'Typefaces have a feel you can sense but not name. I measured it.',
+    idea: 'A font like this one, but rounder. Now you can search for that.',
     beats: [
-      ['The question', 'Why do two Chinese fonts feel close when nobody can say how?'],
-      ['The move', 'I scored 282 free Chinese fonts on 12 stylistic axes, then laid them out so distance means difference.'],
-      ['What it opened', 'Next, the map goes on a floor. You walk from one style to another, and the character 永 changes under your feet.']
+      ['The question', 'How do we make finding Chinese fonts easier, and what does “similar” even mean for a Chinese font?'],
+      ['The move', 'I measured 12 traits across 300 characters for each of 282 fonts that are free for commercial use, weighting what the eye notices most. Then I checked the scores by hand. “Similar fonts” can be steered: rounder, bolder, more handwritten.'],
+      ['What happened', 'About 1,100 visits and 5,000 page views in the first six weeks. The design podcast Anyway.FM shared it.']
     ],
-    credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
+    credits: [['Role', 'Solo: research, design, build'], ['Tools', 'Claude Code']],
     link: 'https://zixiangfont.com',
     images: [
       ['zx-tour', 'A walk through Zixiang: the guide, the 楷体 list, a font and its similar fonts with a filter, compare, then the style pages', 'video']
