@@ -29,7 +29,7 @@ window.PROJECTS = [
     credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
     link: 'https://zixiangfont.com',
     images: [
-      ['zx-tour', 'A walk through Zixiang: home, a font and its similar fonts, the style and guide pages, then compare', 'video']
+      ['zx-tour', 'A walk through Zixiang: the guide, the 楷体 list, a font and its similar fonts with a filter, compare, then the style pages', 'video']
     ]
   },
   {
@@ -43,11 +43,7 @@ window.PROJECTS = [
     credits: [['Role', 'Concept, design, code, sound'], ['Tools', 'Three.js, Tone.js']],
     link: 'https://potatates.github.io/structural-trap/',
     images: [
-      ['st-structure', 'Catching lights and stacking them into a glowing structure as the forest wakes', 'video'],
-      ['st-crack', 'Pulling out a cracked light: everything resting on it shakes and falls', 'video'],
-      ['st-reveal', 'The ending, where the structure you built is replayed', 'video'],
-      ['st-web', 'The first version: a web of lights with color rules'],
-      ['st-mush', 'Mushrooms waking up as the structure grows']
+      ['st-tour', 'The Structural Trap, with sound: catching and stacking lights as the forest wakes, a cracked light pulled out so everything on it falls, then the ending replay', 'video']
     ]
   },
   {
@@ -61,11 +57,7 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-flow', 'From the home page into the test: one choice per screen', 'video'],
-      ['en-result', 'Rating the last statements, then the result page', 'video'],
-      ['en-type', 'A type page, following its growth line to another type and back', 'video'],
-      ['en-dark', 'Beings of Light: turning the lights off and reading by a circle of light', 'video'],
-      ['en-card', 'A saved result card for Type 4']
+      ['en-tour', 'The Wisdom of the Enneagram: the quick test, fifteen statements, the result, then the type pages', 'video']
     ]
   },
   {
