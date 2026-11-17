@@ -10,9 +10,10 @@ window.SITE = {
   sub: 'Fonts, beliefs, a personality system, friendships and a cat café, each made into something you can walk through, touch or play.',
   thanks: 'Thanks for looking.',
   contact: [
-    ['(your email)', null],
-    ['GitHub', 'https://github.com/potatates'],
-    ['Résumé', null]
+    ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
+    ['Résumé', 'resume.html'],
+    ['LinkedIn', 'https://www.linkedin.com/in/miayma/'],
+    ['GitHub', 'https://github.com/potatates']
   ]
 };
 
@@ -28,11 +29,7 @@ window.PROJECTS = [
     credits: [['Role', 'Research, design, code'], ['Tools', 'Python, WebGL']],
     link: 'https://zixiangfont.com',
     images: [
-      ['zx-walk', 'The floor map prototype: a dot for every font, and the character 永 drawn in the font you stand on'],
-      ['zx-compare', 'The Zixiang compare page, with fonts side by side'],
-      ['zx-glyphs', 'The character 永 in every font in the collection'],
-      ['zx-site', 'The Zixiang home page, browsing all fonts'],
-      ['zx-map', 'The similarity map, with fonts colored by family']
+      ['zx-tour', 'A walk through Zixiang: the guide, the 楷体 list, a font and its similar fonts with a filter, compare, then the style pages', 'video']
     ]
   },
   {
@@ -46,11 +43,7 @@ window.PROJECTS = [
     credits: [['Role', 'Concept, design, code, sound'], ['Tools', 'Three.js, Tone.js']],
     link: 'https://potatates.github.io/structural-trap/',
     images: [
-      ['st-structure', 'A glowing structure of caught lights in a dark forest over water'],
-      ['st-reveal', 'The ending, where the structure you built is replayed'],
-      ['st-crack', 'A cracked light being pulled out of the structure'],
-      ['st-web', 'The first version: a web of lights with color rules'],
-      ['st-mush', 'Mushrooms waking up as the structure grows']
+      ['st-tour', 'The Structural Trap, with sound: catching and stacking lights as the forest wakes, a cracked light pulled out so everything on it falls, then the ending replay', 'sound']
     ]
   },
   {
@@ -64,11 +57,7 @@ window.PROJECTS = [
     credits: [['Role', 'Design, code'], ['Source', 'Riso & Hudson']],
     link: 'https://potatates.github.io/enneagram/',
     images: [
-      ['en-home', 'The home page with the enneagram symbol'],
-      ['en-dark', 'Beings of Light: reading the preface by a circle of light'],
-      ['en-card', 'A saved result card for Type 4'],
-      ['en-type', 'A type page with growth and stress lines on the symbol'],
-      ['en-result', 'The result page after the check']
+      ['en-tour', 'The Wisdom of the Enneagram: the quick test, fifteen statements, the result, then the type pages', 'video']
     ]
   },
   {
@@ -90,13 +79,13 @@ window.PROJECTS = [
   },
   {
     id: 'cc', side: 'Side B · 2', title: 'The Coffee Cats', kind: 'Game · hackathon',
-    idea: 'A cat café where the care you give is what you earn with. (draft line)',
+    idea: 'An idle game for decompressing: no timers, no way to lose, just cats to care for.',
     beats: [
-      ['The question', '(what the hackathon asked, in your words)'],
+      ['The question', 'What if a game helped you decompress instead of winding you up?'],
       ['The move', 'Adopt cats, care for them, and merge pastries and coffee to serve the café’s customers.'],
-      ['What I’d tighten', '(the choice you want to make more intentional)']
+      ['Why it works', 'Repetition calms. Built with neurodivergent players in mind: needs drop slowly, so you set the pace.']
     ],
-    credits: [['Made at', '(hackathon name)'], ['Team', '(names?)'], ['Tools', 'Figma']],
+    credits: [['Made at', 'WashU Hackathon 2025 · winner'], ['Team', 'The Coffee Cats'], ['Role', 'Pitch, UI/UX design, all game art'], ['Tools', 'Figma']],
     link: null,
     images: [
       ['cc-shop', 'The cat shop, with cats to adopt for coins'],
