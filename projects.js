@@ -70,8 +70,8 @@ window.PROJECTS = [
     ],
     credits: [['Role', 'PM, design, testing'], ['Team', '2 front-end engineers, 2 testers'], ['Status', 'Live, Nov 2026']],
     images: [
-      ['h5-drama', 'Watching a microdrama on one of the sites: opening a drama, swiping through episodes, then going back', 'video'],
-      ['h5-novel', 'Reading on one of the web-novel sites: tapping a book opens straight into reading, then back home', 'video']
+      ['h5-drama', 'One of the microdrama sites: opening a drama, swiping from episode to episode, then going back home', 'video'],
+      ['h5-novel', 'One of the web-novel sites: an empty library with a button back to browsing, then a book that opens straight into reading, then back home', 'video']
     ]
   },
   {
