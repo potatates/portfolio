@@ -82,6 +82,25 @@ const soundBtn=document.createElement('button');soundBtn.className='sound mono';
 const setSoundLabel=()=>{soundBtn.textContent=soundOn?'Sound off':'Sound on';soundBtn.setAttribute('aria-pressed',soundOn)};setSoundLabel();
 soundBtn.addEventListener('click',()=>{soundOn=!soundOn;setSoundLabel();const l=order[0];if(l&&l.video&&l.sound){l.video.muted=!soundOn;if(l.video.paused)l.video.play().catch(()=>{})}});
 document.body.appendChild(soundBtn);
+/* rooms and toys (rooms.js): the page takes on the open project's colours, and a toy sits under its video */
+const ROOMS=window.ROOMS||{},TOYS=window.TOYS||{},roomEl=$('room');
+const toy=document.createElement('div');toy.className='toy';world.appendChild(toy);
+let roomTok=0,toyTok=0;
+function setRoom(id){
+  const r=id&&ROOMS[id],tok=++roomTok;
+  document.body.classList.toggle('dark',!!(r&&r.dark));
+  roomEl.style.backgroundColor=r?r.bg:'';
+  roomEl.classList.add('fading');
+  setTimeout(()=>{if(tok!==roomTok)return;roomEl.innerHTML='';roomEl.className='';if(r&&r.fill&&!reduce)r.fill(roomEl);
+    requestAnimationFrame(()=>roomEl.classList.remove('fading'))},reduce?0:450);
+}
+function buildToy(p){
+  ++toyTok;clearInterval(toy._timer);const t=TOYS[p.id];
+  toy.className='toy toy-'+p.id;toy.innerHTML='';if(!t)return false;
+  toy.innerHTML=`<span class="mono">${esc(t.title)}</span><div class="toy-body"></div>`;
+  const body=toy.lastElementChild;t.build(body);toy._timer=body._timer;return true;
+}
+function closeToy(){toy.classList.remove('on');clearInterval(toy._timer);const tok=++toyTok;setTimeout(()=>{if(tok===toyTok)toy.innerHTML=''},700)}
 function layout(p,first){
   const [cx,cy]=p._spot,narrow=vw()<760;
   if(narrow){
@@ -89,11 +108,23 @@ function layout(p,first){
     order.forEach((o,k)=>{if(k===0){place(o,x0,y0,W+14,0,first?100:0);o.el.classList.add('lead');o.el.classList.remove('gone')}
       else{place(o,x0+W/2-60+k*6,y0+40+k*6,120,k%2?3:-3);o.el.classList.remove('lead');o.el.classList.add('gone')}});
     card.classList.add('compact');card.style.width=(W+14)+'px';card.style.left=x0+'px';card.style.top=(y0+h+34)+'px';
-    return {cx,cy:y0+(h+34+card.offsetHeight)/2,w:W+40,h:h+34+card.offsetHeight+30};
+    let H=h+34+card.offsetHeight;
+    if(toy.innerHTML){toy.style.width=(W+14)+'px';toy.style.left=x0+'px';toy.style.top=(y0+H+20)+'px';H+=20+toy.offsetHeight}
+    return {cx,cy:y0+H/2,w:W+40,h:H+30};
   }
   card.classList.remove('compact');
   const W=1180,cardW=390,gap=24,L=W-cardW-gap,x0=cx-W/2,y0=cy-300;
-  const lead=order[0];let lw=L,lh=lw/lead.ar;if(lh>520){lh=520;lw=lh*lead.ar}
+  const hasToy=!!toy.innerHTML,cap=hasToy?440:520;
+  if(p.gallery){ /* every print side by side, same height: for work where the layouts are the point */
+    const n=order.length,gw=14,hh=Math.min(cap,...order.map(o=>((L-(n-1)*gw)/n-14)/o.ar));
+    let x=x0+(L-(order.reduce((s,o)=>s+hh*o.ar+14,0)+(n-1)*gw))/2;
+    order.forEach((o,k)=>{o.el.classList.remove('gone','lead');place(o,x,y0,hh*o.ar+14,0,first?120+k*70:0);x+=hh*o.ar+14+gw});
+    let left=hh+14+gap;
+    if(hasToy){const tw2=Math.min(L,600);toy.style.width=tw2+'px';toy.style.left=(x0+(L-tw2)/2)+'px';toy.style.top=(y0+left)+'px';left+=toy.offsetHeight}
+    card.style.width=cardW+'px';card.style.left=(x0+L+gap)+'px';card.style.top=y0+'px';
+    const H=Math.max(left,card.offsetHeight);return {cx,cy:y0+H/2,w:W+60,h:H+40};
+  }
+  const lead=order[0];let lw=L,lh=lw/lead.ar;if(lh>cap){lh=cap;lw=lh*lead.ar}
   const rest=order.slice(1),n=Math.max(1,rest.length),tw=Math.min(240,(L-(n-1)*14)/n,...rest.map(o=>150*o.ar)),ry=y0+lh+14+gap;
   order.forEach((o,k)=>{o.el.classList.remove('gone');o.el.classList.toggle('lead',k===0)});
   place(lead,x0+(L-lw)/2,y0,lw+14,0,first?120:0);
@@ -101,7 +132,9 @@ function layout(p,first){
   rest.forEach((o,k)=>place(o,rx+k*(tw+14),ry,tw,0,first?200+k*70:k*40));
   const rowH=rest.length?Math.max(...rest.map(o=>tw/o.ar))+14:0;
   card.style.width=cardW+'px';card.style.left=(x0+L+gap)+'px';card.style.top=y0+'px';
-  const H=Math.max(lh+14+gap+rowH,card.offsetHeight);
+  let left=lh+14+gap+(rowH?rowH+gap:0);
+  if(hasToy){const tw2=Math.min(L,600);toy.style.width=tw2+'px';toy.style.left=(x0+(L-tw2)/2)+'px';toy.style.top=(y0+left)+'px';left+=toy.offsetHeight}
+  const H=Math.max(left,card.offsetHeight);
   return {cx,cy:y0+H/2,w:W+60,h:H+40};
 }
 function cardHTML(p){return `<div class="mono">${esc(p.side)} · ${esc(p.kind)}</div><h2>${esc(p.title)}</h2><p class="idea">${esc(p.idea)}</p>`+
@@ -110,10 +143,10 @@ function cardHTML(p){return `<div class="mono">${esc(p.side)} · ${esc(p.kind)}<
   (p.link?`<a class="try" href="${p.link}" target="_blank" rel="noopener">Try it ↗</a>`:'')}
 function openProject(p){
   closeProject(true);active=p;order=prints.filter(o=>o.p===p);
-  card.innerHTML=cardHTML(p);
+  card.innerHTML=cardHTML(p);buildToy(p);setRoom(p.id);
   const b=layout(p,true);
   look(b.cx,b.cy,Math.min(1,(vw()-(vw()<760?24:120))/b.w,(vh()-130)/b.h));
-  card.classList.add('on');
+  card.classList.add('on');if(toy.innerHTML)toy.classList.add('on');
   prints.forEach(o=>o.el.classList.toggle('dim',o.p!==p));
   labels.forEach(l=>l.classList.add('gone'));intro.classList.add('gone');
   playLead();
@@ -125,7 +158,7 @@ function playLead(){
   const lead=order[0];
   soundBtn.hidden=!lead.sound;if(lead.video)lead.video.muted=!(lead.sound&&soundOn);
   if(lead.video&&!reduce){lead.video.currentTime=0;lead.video.loop=order.length<2;const pr=lead.video.play();if(pr)pr.catch(()=>{cycle=setTimeout(advance,6000)})}
-  else if(!reduce&&order.length>1)cycle=setTimeout(advance,3600);
+  else if(!reduce&&order.length>1&&!(active&&active.gallery))cycle=setTimeout(advance,3600);
 }
 function advance(){
   if(!active)return;if(document.hidden){cycle=setTimeout(advance,1000);return}
@@ -135,7 +168,7 @@ function closeProject(quick){
   clearTimeout(cycle);cycle=null;if(!active)return;const p=active;active=null;
   prints.forEach(o=>{if(o.video){o.video.pause();o.video.muted=true}});soundBtn.hidden=true;
   prints.filter(o=>o.p===p).forEach((o,k)=>{o.el.classList.remove('lead','gone');place(o,o.home.x,o.home.y,o.home.w,o.home.r,quick?0:k*40)});
-  card.classList.remove('on');
+  card.classList.remove('on');closeToy();setRoom(null);
 }
 function restore(){prints.forEach(o=>o.el.classList.remove('dim'));labels.forEach(l=>l.classList.remove('gone'));intro.classList.remove('gone')}
 

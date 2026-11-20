@@ -69,9 +69,12 @@ window.PROJECTS = [
       ['What I chose', 'The team needed a usable product fast, so I let polish go, like how quickly a page snaps. I spent my changes on links that work, getting to a page and back cleanly, empty pages with a button to keep browsing, a smooth episode scroll, and phone screens that don’t overwhelm.']
     ],
     credits: [['Role', 'PM, design, testing'], ['Team', '2 front-end engineers, 2 testers'], ['Status', 'Live, Nov 2026']],
+    gallery: true,
     images: [
-      ['h5-drama', 'One of the microdrama sites: opening a drama, swiping from episode to episode, then going back home', 'video'],
-      ['h5-novel', 'One of the web-novel sites: an empty library with a button back to browsing, then a book that opens straight into reading, then back home', 'video']
+      ['h5-novinovel', 'NoviNovel home page on a phone: daily check-in, a featured banner and editors’ picks'],
+      ['h5-storyswoon', 'StorySwoon home page on a phone: a serif layout with a featured banner, editors’ picks and trending this week'],
+      ['h5-feverdrama', 'FeverDrama home page on a phone: a dark theme with a featured drama, a top-10 row and more picks'],
+      ['h5-dramacrave', 'DramaCrave home page on a phone: a featured drama card with free episodes and what everyone’s watching']
     ]
   },
   {
