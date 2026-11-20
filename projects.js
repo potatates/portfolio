@@ -7,7 +7,7 @@
 window.SITE = {
   name: 'Mia Ma',
   line: 'I design and build <em>websites, apps and small games.</em>',
-  sub: 'Right now I make ads and websites at COL Group. Here are five things I made: a Chinese font finder, a game about letting go of a belief, an Enneagram guide, a clock for friends and a cat café game.',
+  sub: 'Right now I make ads and websites at COL Group. Here’s some of what I’ve made: a Chinese font finder, a game about letting go of a belief, an Enneagram guide, four mobile sites shipped at work, a clock for friends and a cat café game.',
   thanks: 'Thanks for looking.',
   contact: [
     ['25miama@gmail.com', 'mailto:25miama@gmail.com'],
@@ -58,6 +58,23 @@ window.PROJECTS = [
     link: 'https://potatates.github.io/enneagram/',
     images: [
       ['en-tour', 'The Wisdom of the Enneagram: the quick test, a few of the check statements, the result, then the type pages', 'video']
+    ]
+  },
+  {
+    id: 'h5', side: 'At work · COL Group', title: 'Four sites in two weeks', kind: 'Mobile web · 2026',
+    idea: 'Four reading and drama sites, shipped with no design team. What I chose to fix, and what I let go.',
+    beats: [
+      ['The setup', 'My department had no design team. When the front end’s first draft came back, I stepped in as PM and designer for all four sites: two for web novels, two for microdramas.'],
+      ['The move', 'I redesigned all four on top of that draft in about a day, then spent two weeks finding problems and fixing them as each round of updates came in. I learned how the sites really worked along the way, like pages built from modules anyone can rearrange.'],
+      ['What I chose', 'The team needed a usable product fast, so I let polish go, like how quickly a page snaps. I spent my changes on links that work, getting to a page and back cleanly, empty pages with a button to keep browsing, a smooth episode scroll, and phone screens that don’t overwhelm.']
+    ],
+    credits: [['Role', 'PM, design, testing'], ['Team', '2 front-end engineers, 2 testers'], ['Status', 'Live, Nov 2026']],
+    gallery: true,
+    images: [
+      ['h5-novinovel', 'NoviNovel home page on a phone: daily check-in, a featured banner and editors’ picks'],
+      ['h5-storyswoon', 'StorySwoon home page on a phone: a serif layout with a featured banner, editors’ picks and trending this week'],
+      ['h5-feverdrama', 'FeverDrama home page on a phone: a dark theme with a featured drama, a top-10 row and more picks'],
+      ['h5-dramacrave', 'DramaCrave home page on a phone: a featured drama card with free episodes and what everyone’s watching']
     ]
   },
   {
