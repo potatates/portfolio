@@ -14,8 +14,8 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 /* where things sit on the table (world units) */
 const WW=3000,WH=2300,IX=1500,IY=1050;
 /* the table: Side A along the top, Side B along the bottom, the words in the middle */
-const SPOTS=[[600,470],[1500,220],[2400,470],[950,1660],[2050,1660]];
-const TILT=[-1.5,1,-1,1.5,-1];
+const SPOTS=[[600,470],[1500,220],[2400,470],[600,1560],[1500,1680],[2400,1560]];
+const TILT=[-1.5,1,-1,1.5,-1,1];
 /* each project is one cover print with its other prints tucked behind it like a small pile */
 const COVER=440,PILE=[[0,0,0],[24,-18,3],[-22,-24,-3.5],[30,-34,5],[-30,-40,-5]];
 const STEPS=['Intro',...P.map(p=>p.title),'The whole table'];
@@ -45,7 +45,7 @@ P.forEach((p,pi)=>{
       :`<img src="img/${k}.jpg" alt="${esc(alt)}" decoding="async">`;
     const o={el,p,home:null,ar:1.6,w};
     const img=el.querySelector('img,video');o.video=clip?img:null;o.sound=kind==='sound';
-    const setHome=()=>{const ww=o.ar<1.05?w*.72:w;o.home={x:cx+dx-ww/2,y:cy+dy-(ww/o.ar)/2,w:ww,r}};
+    const setHome=()=>{const ww=o.ar<1.05?Math.min(w,400*o.ar):w;o.home={x:cx+dx-ww/2,y:cy+dy-(ww/o.ar)/2,w:ww,r}};
     setHome();
     img.addEventListener(o.video?'loadedmetadata':'load',()=>{o.ar=o.video?img.videoWidth/img.videoHeight:img.naturalWidth/img.naturalHeight;setHome();placeLabel(pi);if(!active||active!==p){if(dealt)place(o,o.home.x,o.home.y,o.home.w,o.home.r)}});
     if(o.video)img.addEventListener('ended',()=>{if(active===p&&order[0]===o)advance()});
@@ -72,7 +72,7 @@ const vw=()=>innerWidth,vh=()=>innerHeight;
 function look(x,y,z,instant){const ox=vw()/2-x*z,oy=vh()/2-y*z,t=`translate(${ox}px,${oy}px) scale(${z})`;
   if(instant){world.style.transition='none';world.style.transform=t;world.offsetWidth;world.style.transition=''}else world.style.transform=t}
 const zIntro=()=>Math.max(.5,Math.min(.85,vw()/1500));
-const zAll=()=>Math.min(vw()/2700,vh()/2050);
+const zAll=()=>Math.min(vw()/2700,vh()/2150);
 
 /* a project gathered in place; its prints take turns as the lead */
 let active=null,order=[],cycle=null;
@@ -94,7 +94,7 @@ function layout(p,first){
   card.classList.remove('compact');
   const W=1180,cardW=390,gap=24,L=W-cardW-gap,x0=cx-W/2,y0=cy-300;
   const lead=order[0];let lw=L,lh=lw/lead.ar;if(lh>520){lh=520;lw=lh*lead.ar}
-  const rest=order.slice(1),n=Math.max(1,rest.length),tw=Math.min(240,(L-(n-1)*14)/n),ry=y0+lh+14+gap;
+  const rest=order.slice(1),n=Math.max(1,rest.length),tw=Math.min(240,(L-(n-1)*14)/n,...rest.map(o=>150*o.ar)),ry=y0+lh+14+gap;
   order.forEach((o,k)=>{o.el.classList.remove('gone');o.el.classList.toggle('lead',k===0)});
   place(lead,x0+(L-lw)/2,y0,lw+14,0,first?120:0);
   const rowW=n*tw+(n-1)*14,rx=x0+(L-rowW)/2;
@@ -147,7 +147,7 @@ function render(i){
   hint.style.opacity=i===0?1:0;
   if(i===0){closeProject();restore();outro.classList.remove('on');look(IX,IY,zIntro());topline.textContent=S.name+' · Portfolio'}
   else if(i<=P.length){outro.classList.remove('on');openProject(P[i-1]);topline.textContent=P[i-1].side}
-  else{closeProject();restore();intro.classList.add('gone');outro.classList.add('on');look(IX,1000,zAll());topline.textContent=S.name+' · Portfolio'}
+  else{closeProject();restore();intro.classList.add('gone');outro.classList.add('on');look(IX,1020,zAll());topline.textContent=S.name+' · Portfolio'}
 }
 function goStep(i){i=Math.max(0,Math.min(STEPS.length-1,i));scroller.scrollTo({top:i*scroller.clientHeight,behavior:reduce?'auto':'smooth'})}
 let raf=0;
